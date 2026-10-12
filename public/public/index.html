@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mafia Game</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col items-center justify-center p-4">
+  <main class="w-full max-w-md bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-2xl">
+    <h1 class="text-2xl font-black text-center text-red-500 mb-6 tracking-wider">MAFIA GAME</h1>
+    <section id="lobby-select" class="space-y-4">
+      <div>
+        <label class="block text-xs font-semibold text-slate-400 uppercase mb-1" for="playerName">Your Nickname</label>
+        <input id="playerName" maxlength="24" placeholder="Enter name..." class="w-full px-4 py-2 bg-slate-950 border border-slate-800 rounded-lg text-sm">
+      </div>
+      <button onclick="createRoom()" class="w-full py-2 bg-red-600 hover:bg-red-700 font-bold rounded-lg text-sm">Create Room</button>
+      <div class="border-t border-slate-800 pt-4 space-y-2">
+        <label class="block text-xs font-semibold text-slate-400 uppercase mb-1" for="roomCodeInput">Join Room</label>
+        <input id="roomCodeInput" maxlength="5" placeholder="Room code..." class="w-full px-4 py-2 bg-slate-950 border border-slate-800 rounded-lg uppercase text-sm">
+        <button onclick="joinRoom()" class="w-full py-2 bg-slate-800 hover:bg-slate-700 font-bold rounded-lg text-sm">Join Room</button>
+      </div>
+    </section>
+    <section id="game-room" class="hidden space-y-4">
+      <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+        <h2 id="room-title" class="text-lg font-bold text-red-400"></h2>
+        <span id="role-display" class="text-xs font-semibold px-2.5 py-1 bg-red-950/60 border border-red-800 text-red-300 rounded-full uppercase">Role: Waiting</span>
+      </div>
+      <div>
+        <h3 class="text-xs font-bold text-slate-400 uppercase mb-2">Players in Room</h3>
+        <div id="player-list" class="space-y-1.5 max-h-40 overflow-y-auto pr-1"></div>
+      </div>
+      <div class="bg-slate-950 p-4 rounded-lg border border-slate-800 text-center space-y-2">
+        <p id="phase-banner" class="text-sm font-semibold text-yellow-400">Waiting for host to start...</p>
+        <p id="announcement" class="text-xs text-slate-300"></p>
+        <div id="action-panel" class="pt-2"></div>
+      </div>
+      <button id="start-btn" onclick="startGame()" style="display:none" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 font-bold rounded-lg text-sm">Start Game (5–8 Players)</button>
+    </section>
+  </main>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/client.js"></script>
+</body>
+</html>
